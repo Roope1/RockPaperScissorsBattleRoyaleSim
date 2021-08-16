@@ -1,9 +1,7 @@
-let contestant;
 let contestants;
 let tempPosX, tempPosY;
 let speed = 3;
 let diameter = 15;
-let newtype = 0;
 let rock, paper, scissors;
 let gameover = false;
 let winner;
@@ -30,7 +28,7 @@ function draw(){
   for(let i = 0; i < contestants.length; i++){
     contestants[i].move();
     contestants[i].display();
-  }
+    }
   } else {
     if(contestants[0].type === 1){
       winner = "Rock";
@@ -45,8 +43,6 @@ function draw(){
       textSize(64);
       text(winner + " wins!", 50, 100);
   }
-
-
 }
 
 
@@ -57,10 +53,7 @@ class object{
     this.diameter = diameter;
     this.speed = speed;
     this.type = round(random(1, 3));
-
-
   }
-
 
   move(){
     this.update(generateTempPos(this.x, this.y));
@@ -69,17 +62,16 @@ class object{
   update(position) {
     this.x = position[0];
     this.y = position[1];
-
   }
 
   display(){
-      if(this.type === 1){
-        image(rock, this.x - this.diameter, this.y - this.diameter, this.diameter * 2, this.diameter * 2);
-      } else if (this.type === 2) {
-        image(paper, this.x - this.diameter, this.y - this.diameter, this.diameter * 2, this.diameter * 2);
-      }else if (this.type === 3) {
-        image(scissors, this.x - this.diameter, this.y - this.diameter, this.diameter * 2, this.diameter * 2);
-      }
+    if(this.type === 1){
+      image(rock, this.x - this.diameter, this.y - this.diameter, this.diameter * 2, this.diameter * 2);
+    } else if (this.type === 2) {
+      image(paper, this.x - this.diameter, this.y - this.diameter, this.diameter * 2, this.diameter * 2);
+    }else if (this.type === 3) {
+      image(scissors, this.x - this.diameter, this.y - this.diameter, this.diameter * 2, this.diameter * 2);
+    }
   }
 }
 
@@ -122,8 +114,8 @@ function fight(typeA, typeB){
 
 
 function generateTempPos(x, y){
-      tempPosX = x + (speed *  round(random(-1, 1)));
-      tempPosY = y + (speed *  round(random(-1, 1)));
+      tempPosX = x + (speed * round(random(-1, 1)));
+      tempPosY = y + (speed * round(random(-1, 1)));
 
       while(!checkTempPos([tempPosX, tempPosY])){
         generateTempPos(x,y)
